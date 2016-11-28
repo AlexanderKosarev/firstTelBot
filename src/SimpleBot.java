@@ -7,6 +7,7 @@ import org.telegram.telegrambots.api.methods.send.SendChatAction;
 import org.telegram.telegrambots.api.methods.send.SendLocation;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.methods.send.SendPhoto;
+import org.telegram.telegrambots.api.objects.CallbackQuery;
 import org.telegram.telegrambots.api.objects.Message;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.api.objects.replykeyboard.ForceReplyKeyboard;
@@ -68,39 +69,43 @@ public class SimpleBot extends TelegramLongPollingBot {
         sendMessage.setChatId(message.getChatId().toString());
         //sendMessage.setReplyToMessageId(message.getMessageId());
         sendMessage.setText("Привет");
-        SendPhoto sendPhoto = new SendPhoto();
-        sendPhoto.setChatId(message.getChatId().toString());
-        sendPhoto.setPhoto("http://keeno.tv/upload/iblock/a5d/a5d4024fc3dd1ffdb9df84e03b406636.jpg");
+        CallbackQuery callbackQuery = new CallbackQuery();
+        try {
+
+
+            if (callbackQuery.getData().toString().equals(null)) {
+                System.out.print("Null");
+            } else if (callbackQuery.getData().toString().equals("лол")) {
+                sendMessage.setText("ОНО ЖИВО");
+            }
+        }catch (Exception e)
+        {
+
+        }
 //        SendChatAction sendChatAction = new SendChatAction();
 //        sendChatAction.setChatId(message.getChatId().toString());
 //        sendChatAction.setAction("Action 1");
         SendLocation sendLocation = new SendLocation();
         sendLocation.setChatId(message.getChatId().toString());
-        if (message.getText().equals("Кнопки")){
+        if (message.getText().equals("кнопки") || message.getText().equals("Кнопки")){
             sendKeyboard(message);
         }
         
-        if (message.getText().equals("меню") || message.getText().equals("Меню")){
-            List<KeyboardRow> keyboard = new ArrayList<>();
-            KeyboardRow keyboardFirstRow  = new KeyboardRow();
-            keyboardFirstRow.add("пункт 1.1");
-            keyboardFirstRow.add("пункт 1.2");
-            keyboard.add(keyboardFirstRow);
-            KeyboardRow keyboardSecondRow  = new KeyboardRow();
-            keyboardSecondRow.add("пункт 2.1");
-            keyboard.add(keyboardSecondRow);
-            KeyboardRow keyboardThirdRow  = new KeyboardRow();
-            keyboardThirdRow.add("пункт 3.1");
-            keyboard.add(keyboardThirdRow);
-            replyKeyboardMarkup.setKeyboard(keyboard);
-
-        }
-        try {
-            sendPhoto(sendPhoto);
-        } catch (TelegramApiException e) {
-            e.printStackTrace();
-        }
-
+//        if (message.getText().equals("меню") || message.getText().equals("Меню")){
+//            List<KeyboardRow> keyboard = new ArrayList<>();
+//            KeyboardRow keyboardFirstRow  = new KeyboardRow();
+//            keyboardFirstRow.add("пункт 1.1");
+//            keyboardFirstRow.add("пункт 1.2");
+//            keyboard.add(keyboardFirstRow);
+//            KeyboardRow keyboardSecondRow  = new KeyboardRow();
+//            keyboardSecondRow.add("пункт 2.1");
+//            keyboard.add(keyboardSecondRow);
+//            KeyboardRow keyboardThirdRow  = new KeyboardRow();
+//            keyboardThirdRow.add("пункт 3.1");
+//            keyboard.add(keyboardThirdRow);
+//            replyKeyboardMarkup.setKeyboard(keyboard);
+//
+//        }
         try {
             sendMessage(sendMessage);
         } catch (TelegramApiException e) {
@@ -118,7 +123,79 @@ public class SimpleBot extends TelegramLongPollingBot {
         List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
         List<InlineKeyboardButton> inlineKeyboardButtons = new ArrayList<>();
         InlineKeyboardButton inlineKeyboardButton = new InlineKeyboardButton();
-        inlineKeyboardButton.setText("Кнопка 1");
+        inlineKeyboardButton.setText("Обеды (с 12 до 16 по будням)");
+        inlineKeyboardButton.setUrl("https://core.telegram.org/bots/api#inlinekeyboardmarkup");
+        inlineKeyboardButtons.add(inlineKeyboardButton);
+        keyboard.add(inlineKeyboardButtons);
+        inlineKeyboardButtons = new ArrayList<>();
+        inlineKeyboardButton = new InlineKeyboardButton();
+        inlineKeyboardButton.setText("Блинчики");
+        inlineKeyboardButton.setCallbackData("лол");
+        inlineKeyboardButtons.add(inlineKeyboardButton);
+        keyboard.add(inlineKeyboardButtons);
+        inlineKeyboardButtons = new ArrayList<>();
+        inlineKeyboardButton = new InlineKeyboardButton();
+        inlineKeyboardButton.setText("Трио пицца");
+        inlineKeyboardButton.setUrl("https://core.telegram.org/bots/api#inlinekeyboardmarkup");
+        inlineKeyboardButtons.add(inlineKeyboardButton);
+        keyboard.add(inlineKeyboardButtons);
+        inlineKeyboardButtons = new ArrayList<>();
+        inlineKeyboardButton = new InlineKeyboardButton();
+        inlineKeyboardButton.setText("Yes! Pizza");
+        inlineKeyboardButton.setUrl("https://core.telegram.org/bots/api#inlinekeyboardmarkup");
+        inlineKeyboardButtons.add(inlineKeyboardButton);
+        keyboard.add(inlineKeyboardButtons);
+        inlineKeyboardButtons = new ArrayList<>();
+        inlineKeyboardButton = new InlineKeyboardButton();
+        inlineKeyboardButton.setText("Роллы");
+        inlineKeyboardButton.setUrl("https://core.telegram.org/bots/api#inlinekeyboardmarkup");
+        inlineKeyboardButtons.add(inlineKeyboardButton);
+        keyboard.add(inlineKeyboardButtons);
+        inlineKeyboardButtons = new ArrayList<>();
+        inlineKeyboardButton = new InlineKeyboardButton();
+        inlineKeyboardButton.setText("Рис и лапша");
+        inlineKeyboardButton.setUrl("https://core.telegram.org/bots/api#inlinekeyboardmarkup");
+        inlineKeyboardButtons.add(inlineKeyboardButton);
+        keyboard.add(inlineKeyboardButtons);
+        inlineKeyboardButtons = new ArrayList<>();
+        inlineKeyboardButton = new InlineKeyboardButton();
+        inlineKeyboardButton.setText("Курица фри");
+        inlineKeyboardButton.setUrl("https://core.telegram.org/bots/api#inlinekeyboardmarkup");
+        inlineKeyboardButtons.add(inlineKeyboardButton);
+        keyboard.add(inlineKeyboardButtons);
+        inlineKeyboardButtons = new ArrayList<>();
+        inlineKeyboardButton = new InlineKeyboardButton();
+        inlineKeyboardButton.setText("Картофель фри и кукуруза");
+        inlineKeyboardButton.setUrl("https://core.telegram.org/bots/api#inlinekeyboardmarkup");
+        inlineKeyboardButtons.add(inlineKeyboardButton);
+        keyboard.add(inlineKeyboardButtons);
+        inlineKeyboardButtons = new ArrayList<>();
+        inlineKeyboardButton = new InlineKeyboardButton();
+        inlineKeyboardButton.setText("Салаты");
+        inlineKeyboardButton.setUrl("https://core.telegram.org/bots/api#inlinekeyboardmarkup");
+        inlineKeyboardButtons.add(inlineKeyboardButton);
+        keyboard.add(inlineKeyboardButtons);
+        inlineKeyboardButtons = new ArrayList<>();
+        inlineKeyboardButton = new InlineKeyboardButton();
+        inlineKeyboardButton.setText("Пироги");
+        inlineKeyboardButton.setUrl("https://core.telegram.org/bots/api#inlinekeyboardmarkup");
+        inlineKeyboardButtons.add(inlineKeyboardButton);
+        keyboard.add(inlineKeyboardButtons);
+        inlineKeyboardButtons = new ArrayList<>();
+        inlineKeyboardButton = new InlineKeyboardButton();
+        inlineKeyboardButton.setText("Десерты");
+        inlineKeyboardButton.setUrl("https://core.telegram.org/bots/api#inlinekeyboardmarkup");
+        inlineKeyboardButtons.add(inlineKeyboardButton);
+        keyboard.add(inlineKeyboardButtons);
+        inlineKeyboardButtons = new ArrayList<>();
+        inlineKeyboardButton = new InlineKeyboardButton();
+        inlineKeyboardButton.setText("Соусы");
+        inlineKeyboardButton.setUrl("https://core.telegram.org/bots/api#inlinekeyboardmarkup");
+        inlineKeyboardButtons.add(inlineKeyboardButton);
+        keyboard.add(inlineKeyboardButtons);
+        inlineKeyboardButtons = new ArrayList<>();
+        inlineKeyboardButton = new InlineKeyboardButton();
+        inlineKeyboardButton.setText("Напитки");
         inlineKeyboardButton.setUrl("https://core.telegram.org/bots/api#inlinekeyboardmarkup");
         inlineKeyboardButtons.add(inlineKeyboardButton);
         keyboard.add(inlineKeyboardButtons);
